@@ -2,7 +2,7 @@ import { LockClosedIcon, UserGroupIcon } from "@heroicons/react/24/outline";
 import PlusGoalsLogo from "@assets/images/plus-goal-logo.png"
 const Header = () => {
   return (
-    <header className=" flex items-center justify-between py-2  md:py-4 px-6  shadow-lg  fixed top-0 w-full z-50 bg-white">
+    <header className=" flex items-center justify-between py-6  md:py-4 px-6  shadow-lg  fixed top-0 w-full z-50 bg-white">
       <div className="flex justify-center items-center gap-x-4">
         <img className="cursor-pointer select-none" src={PlusGoalsLogo} alt="plus-goals-logo" />
       </div>
