@@ -3,6 +3,15 @@ import { UserCircleIcon } from "@heroicons/react/24/solid"
 function StudentProfile() {
     return (
         <div className="mx-4 md:mx-40 space-y-4 ">
+            <div className="text-center md:text-left">
+                <h1 className="text-3xl font-semibold">Profile</h1>
+                <div className="text-sm breadcrumbs text-black/40">
+                    <ul>
+                        <li><a>Home</a></li>
+                        <li>Profile</li>
+                    </ul>
+                </div>
+            </div>
             <div className="rounded-xl   py-8 px-4 space-y-10 bg-white shadow-sm border-2">
 
                 <div className="flex flex-col md:flex-row justify-center md:justify-evenly items-center   gap-y-4 ">
