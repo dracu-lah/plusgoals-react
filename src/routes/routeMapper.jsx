@@ -5,13 +5,15 @@ import { Outlet } from "react-router-dom";
 import Loader from "@components/shared/Loader/Loader";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
-
 // Lazy-loaded Components
 const Login = lazy(() => import("@components/auth/Login"));
 const Dashboard = lazy(() => import("@components/dashboard/Dashboard"));
 const NotFound = lazy(() => import("@components/shared/NotFound/NotFound"));
 const User = lazy(() => import("@components/users/User"));
-const StudentTaskBoard = lazy(() => import("@components/pages/student-taskboard/StudentTaskBoard"));
+const StudentTaskBoard = lazy(() =>
+  import("@components/pages/student-task-board/StudentTaskBoard")
+);
+const StudentProfile = lazy(()=>import("@components/pages/student-profile/StudentProfile"))
 
 const routeMapper = () => {
   return [
@@ -38,7 +40,7 @@ const routeMapper = () => {
       exact: true,
     },
     {
-      path: "/student-taskboard",
+      path: "/student",
       element: (
         <PrivateRoute>
           <Outlet />
@@ -51,7 +53,25 @@ const routeMapper = () => {
           exact: true,
           element: (
             <Suspense fallback={<Loader />}>
+              <User />
+            </Suspense>
+          ),
+        },
+        {
+          path: "student-task-board",
+          exact: true,
+          element: (
+            <Suspense fallback={<Loader />}>
               <StudentTaskBoard />
+            </Suspense>
+          ),
+        },
+        {
+          path: "student-profile",
+          exact: true,
+          element: (
+            <Suspense fallback={<Loader />}>
+              <StudentProfile />
             </Suspense>
           ),
         },

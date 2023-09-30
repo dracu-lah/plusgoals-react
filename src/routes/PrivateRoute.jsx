@@ -2,15 +2,16 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 import Header from "@components/shared/Header/Header";
-import SideMenu from "@components/shared/SideMenu/SideMenu";
+import Footer from "@components/shared/Footer/Footer";
 
 const PrivateLayout = ({ children }) => (
   <div className="">
-    {/*<Header />*/}
-    <div className="">
+    <Header />
+    <div className="min-h-screen">
       {/*<SideMenu />*/}
-      <main className="">{children}</main>
+      <main className="mt-28">{children}</main>
     </div>
+    <Footer />
   </div>
 );
 
