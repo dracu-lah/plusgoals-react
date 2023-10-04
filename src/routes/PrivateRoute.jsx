@@ -5,12 +5,10 @@ import Header from "@components/shared/Header/Header";
 import Footer from "@components/shared/Footer/Footer";
 
 const PrivateLayout = ({ children }) => (
-  <div className="">
+  <div className="flex flex-col min-h-screen ">
     <Header />
-    <div className="min-h-screen">
       {/*<SideMenu />*/}
-      <main className="mt-28">{children}</main>
-    </div>
+      <main className="flex-1">{children}</main>
     <Footer />
   </div>
 );

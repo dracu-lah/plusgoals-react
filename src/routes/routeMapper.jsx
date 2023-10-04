@@ -13,7 +13,12 @@ const User = lazy(() => import("@components/users/User"));
 const StudentTaskBoard = lazy(() =>
   import("@components/pages/student-task-board/StudentTaskBoard")
 );
-const StudentProfile = lazy(()=>import("@components/pages/student-profile/StudentProfile"))
+const StudentProfile = lazy(() =>
+  import("@components/pages/student-profile/StudentProfile")
+);
+const StudentQNA = lazy(() =>
+  import("@components/pages/student-qna/StudentQNA")
+);
 
 const routeMapper = () => {
   return [
@@ -63,6 +68,15 @@ const routeMapper = () => {
           element: (
             <Suspense fallback={<Loader />}>
               <StudentTaskBoard />
+            </Suspense>
+          ),
+        },
+        {
+          path: "student-qna",
+          exact: true,
+          element: (
+            <Suspense fallback={<Loader />}>
+              <StudentQNA />
             </Suspense>
           ),
         },

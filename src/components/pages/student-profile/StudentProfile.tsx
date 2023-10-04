@@ -2,7 +2,7 @@ import { UserCircleIcon } from "@heroicons/react/24/solid"
 
 function StudentProfile() {
     return (
-        <div className="mx-4 md:mx-40 space-y-4 ">
+        <div className="mx-4 md:mx-40 my-24 space-y-4 ">
             <div className="text-center md:text-left">
                 <h1 className="text-3xl font-semibold">Profile</h1>
                 <div className="text-sm breadcrumbs text-black/40">

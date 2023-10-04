@@ -1,7 +1,7 @@
 
 function Footer() {
     return (
-        <footer className="bg-black  ">
+        <footer className="bg-black relative ">
             <div>
 
                 <div className="footer   p-10  text-neutral-content">

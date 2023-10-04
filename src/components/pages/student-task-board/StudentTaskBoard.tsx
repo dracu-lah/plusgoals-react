@@ -35,7 +35,7 @@ const StudentTaskBoard = () => {
   ]
 
   return (
-    <div className="flex flex-col justify-center items-center overflow-x-hidden">
+    <div className="flex flex-col justify-center items-center overflow-x-hidden my-20">
       <div className=" flex justify-center md:justify-start md:ml-44  items-center w-full ">
         <div className="text-center md:text-left">
           <h1 className="text-3xl font-semibold">Tasks</h1>
