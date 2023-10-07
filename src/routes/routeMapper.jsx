@@ -7,15 +7,24 @@ import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 // Lazy-loaded Components
 const Login = lazy(() => import("@components/auth/Login"));
+const SignIn = lazy(() => import("@components/auth/SignIn"));
 const Dashboard = lazy(() => import("@components/dashboard/Dashboard"));
 const NotFound = lazy(() => import("@components/shared/NotFound/NotFound"));
 const User = lazy(() => import("@components/users/User"));
 const StudentTaskBoard = lazy(() =>
   import("@components/pages/student-task-board/StudentTaskBoard")
 );
-const StudentProfile = lazy(() =>
-  import("@components/pages/student-profile/StudentProfile")
+// account page components start
+const StudentProfileLayout = lazy(() =>
+  import("@components/pages/account/StudentProfileLayout")
 );
+const StudentProfilePage = lazy(() =>
+  import("@components/pages/account/profile/StudentProfilePage")
+);
+const StudentPhotoPage = lazy(() =>
+  import("@components/pages/account/photo/StudentPhotoPage")
+);
+// account page components end
 const StudentQNA = lazy(() =>
   import("@components/pages/student-qna/StudentQNA")
 );
@@ -28,6 +37,17 @@ const routeMapper = () => {
         <PublicRoute>
           <Suspense fallback={<Loader />}>
             <Login />
+          </Suspense>
+        </PublicRoute>
+      ),
+      exact: true,
+    },
+    {
+      path: "/signin",
+      element: (
+        <PublicRoute>
+          <Suspense fallback={<Loader />}>
+            <SignIn />
           </Suspense>
         </PublicRoute>
       ),
@@ -81,13 +101,46 @@ const routeMapper = () => {
           ),
         },
         {
-          path: "student-profile",
+          path: "account",
           exact: true,
           element: (
             <Suspense fallback={<Loader />}>
-              <StudentProfile />
+              <div>
+                <StudentProfileLayout>
+                  <Outlet />
+                </StudentProfileLayout>
+              </div>
             </Suspense>
           ),
+          children: [
+            {
+              index: true,
+              exact: true,
+              element: (
+                <Suspense fallback={<Loader />}>
+                  <User />
+                </Suspense>
+              ),
+            },
+            {
+              path: "profile",
+              exact: true,
+              element: (
+                <Suspense fallback={<Loader />}>
+                  <StudentProfilePage />
+                </Suspense>
+              ),
+            },
+            {
+              path: "photo",
+              exact: true,
+              element: (
+                <Suspense fallback={<Loader />}>
+                  <StudentPhotoPage />
+                </Suspense>
+              ),
+            },
+          ],
         },
         {
           path: ":action/:id",

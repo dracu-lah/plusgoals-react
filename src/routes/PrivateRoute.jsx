@@ -7,8 +7,8 @@ import Footer from "@components/shared/Footer/Footer";
 const PrivateLayout = ({ children }) => (
   <div className="flex flex-col min-h-screen ">
     <Header />
-      {/*<SideMenu />*/}
-      <main className="flex-1">{children}</main>
+    {/*<SideMenu />*/}
+    <main className="flex-1">{children}</main>
     <Footer />
   </div>
 );
