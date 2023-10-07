@@ -15,15 +15,20 @@ const StudentTaskBoard = lazy(() =>
   import("@components/pages/student-task-board/StudentTaskBoard")
 );
 // account page components start
-const StudentProfileLayout = lazy(() =>
-  import("@components/pages/account/StudentProfileLayout")
+const AccountPageLayout = lazy(() =>
+  import("@components/pages/account/AccountPageLayout")
 );
-const StudentProfilePage = lazy(() =>
-  import("@components/pages/account/profile/StudentProfilePage")
+
+const EditProfilePage = lazy(() =>
+  import("@components/pages/account/edit-profile/EditProfilePage")
 );
-const StudentPhotoPage = lazy(() =>
-  import("@components/pages/account/photo/StudentPhotoPage")
+const EditPhotoPage = lazy(() =>
+  import("@components/pages/account/edit-photo/EditPhotoPage")
 );
+const EditAccountPage = lazy(() =>
+  import("@components/pages/account/edit-account/EditAccountPage")
+);
+
 // account page components end
 const StudentQNA = lazy(() =>
   import("@components/pages/student-qna/StudentQNA")
@@ -106,9 +111,9 @@ const routeMapper = () => {
           element: (
             <Suspense fallback={<Loader />}>
               <div>
-                <StudentProfileLayout>
+                <AccountPageLayout>
                   <Outlet />
-                </StudentProfileLayout>
+                </AccountPageLayout>
               </div>
             </Suspense>
           ),
@@ -123,20 +128,29 @@ const routeMapper = () => {
               ),
             },
             {
-              path: "profile",
+              path: "edit-profile",
               exact: true,
               element: (
                 <Suspense fallback={<Loader />}>
-                  <StudentProfilePage />
+                  <EditProfilePage />
                 </Suspense>
               ),
             },
             {
-              path: "photo",
+              path: "edit-photo",
               exact: true,
               element: (
                 <Suspense fallback={<Loader />}>
-                  <StudentPhotoPage />
+                  <EditPhotoPage />
+                </Suspense>
+              ),
+            },
+            {
+              path: "edit-account",
+              exact: true,
+              element: (
+                <Suspense fallback={<Loader />}>
+                  <EditAccountPage />
                 </Suspense>
               ),
             },
