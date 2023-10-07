@@ -1,11 +1,15 @@
 import { useState } from "react";
 
-const StudentPhotoPage = () => {
+const EditPhotoPage = () => {
     const [selectedFile, setSelectedFile] = useState(null);
+    const [previewUrl, setPreviewUrl] = useState(null);
 
     const handleFileChange = (e) => {
-        setSelectedFile(e.target.files[0]);
+        const file = e.target.files[0];
+        setSelectedFile(file);
+        setPreviewUrl(URL.createObjectURL(file));
     };
+
     return (
         <div className="md:w-5/6 border-t-2 border-black/20 md:border-none">
             <div className="py-4  space-y-2 text-center  border-b-2  border-black/20">
@@ -16,8 +20,8 @@ const StudentPhotoPage = () => {
                 <div className=" p-6 mt-4 flex flex-col justify-between h-full space-y-4 ">
                     <h3 className="font-bold text-sm ">Image preview</h3>
                     <div className="space-y-4 mb-4">
-                        <div className="border border-black p-4 ">
-                            <img className="mx-auto" src="https://img-c.udemycdn.com/user/200_H/anonymous_3.png" alt="profile" />
+                        <div className="border border-black p-4  ">
+                            <img className="mx-auto w-36 h-36 rounded-full " src={previewUrl ? previewUrl : 'https://img-c.udemycdn.com/user/200_H/anonymous_3.png'} alt="profile" />
                         </div>
 
                         <h3 className="font-bold text-sm ">Add / Change Image</h3>
@@ -54,4 +58,4 @@ const StudentPhotoPage = () => {
     )
 }
 
-export default StudentPhotoPage
+export default EditPhotoPage

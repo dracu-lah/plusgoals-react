@@ -1,6 +1,6 @@
 import { UserCircleIcon } from "@heroicons/react/24/solid"
 
-function StudentProfile() {
+function STcpy() {
     return (
         <div className="mx-4 md:mx-40 my-24 space-y-4 ">
             <div className="text-center md:text-left">
@@ -70,4 +70,4 @@ function StudentProfile() {
     )
 }
 
-export default StudentProfile
+export default STcpy
