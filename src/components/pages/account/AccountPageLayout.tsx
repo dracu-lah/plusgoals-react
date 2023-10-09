@@ -2,8 +2,8 @@ import { NavLink } from "react-router-dom";
 
 function AccountPageLayout({ children }) {
   return (
-    <div className=" m-8 md:mx-20  ">
-      <div className=" flex flex-col md:flex-row  bg-white border-2 border-black/20 ">
+    <div className=" m-8 md:mx-8 lg:mx-52 ">
+      <div className=" flex flex-col  md:flex-row  bg-white border-2 border-black/20 ">
         {/* Sidebar Start */}
         <div className="md:border-r-2 border-black/20">
           <div className="px-10 pt-4 pb-6 space-y-2">
@@ -20,9 +20,8 @@ function AccountPageLayout({ children }) {
             <NavLink to={"enrolled-courses"}>
               {({ isActive }) => (
                 <li
-                  className={`${
-                    isActive ? "bg-black/60 text-white" : ""
-                  } pl-6  hover:text-white duration-100 hover:bg-black/60 py-1`}
+                  className={`${isActive ? "bg-black/60 text-white" : ""
+                    } pl-6  hover:text-white duration-100 hover:bg-black/60 py-1`}
                 >
                   Enrolled Courses
                 </li>
@@ -31,9 +30,8 @@ function AccountPageLayout({ children }) {
             <NavLink to={"edit-profile"}>
               {({ isActive }) => (
                 <li
-                  className={`${
-                    isActive ? "bg-black/60 text-white" : ""
-                  } pl-6  hover:text-white duration-100 hover:bg-black/60 py-1`}
+                  className={`${isActive ? "bg-black/60 text-white" : ""
+                    } pl-6  hover:text-white duration-100 hover:bg-black/60 py-1`}
                 >
                   Profile
                 </li>
@@ -42,9 +40,8 @@ function AccountPageLayout({ children }) {
             <NavLink to={"edit-photo"}>
               {({ isActive }) => (
                 <li
-                  className={`${
-                    isActive ? "bg-black/60 text-white" : ""
-                  } pl-6  hover:text-white duration-100 hover:bg-black/60 py-1`}
+                  className={`${isActive ? "bg-black/60 text-white" : ""
+                    } pl-6  hover:text-white duration-100 hover:bg-black/60 py-1`}
                 >
                   Photo
                 </li>
@@ -53,9 +50,8 @@ function AccountPageLayout({ children }) {
             <NavLink to={"edit-account"}>
               {({ isActive }) => (
                 <li
-                  className={`${
-                    isActive ? "bg-black/60 text-white" : ""
-                  } pl-6  hover:text-white duration-100 hover:bg-black/60 py-1`}
+                  className={`${isActive ? "bg-black/60 text-white" : ""
+                    } pl-6  hover:text-white duration-100 hover:bg-black/60 py-1`}
                 >
                   Account Security
                 </li>
@@ -64,9 +60,8 @@ function AccountPageLayout({ children }) {
             <NavLink to={"profile"}>
               {({ isActive }) => (
                 <li
-                  className={`${
-                    isActive ? "bg-black/60 text-white" : ""
-                  } pl-6  hover:text-white duration-100 hover:bg-black/60 py-1`}
+                  className={`${isActive ? "bg-black/60 text-white" : ""
+                    } pl-6  hover:text-white duration-100 hover:bg-black/60 py-1`}
                 >
                   Payment Methods
                 </li>

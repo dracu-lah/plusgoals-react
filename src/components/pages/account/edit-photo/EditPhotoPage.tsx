@@ -11,7 +11,7 @@ const EditPhotoPage = () => {
     };
 
     return (
-        <div className="md:w-5/6 border-t-2 border-black/20 md:border-none">
+        <div className="md:w-full border-t-2 border-black/20 md:border-none">
             <div className="py-4  space-y-2 text-center  border-b-2  border-black/20">
                 <h3 className="font-bold text-neutral text-2xl tracking-tight">Photo</h3>
                 <p>Add a nice photo of yourself for your profile</p>
