@@ -8,9 +8,26 @@ const EditProfilePage = () => {
             </div>
             <div className=" h-4/5">
                 <div className=" p-6 mt-4 flex flex-col justify-between h-full ">
-                    <div className="space-y-4 mb-4">
-                        <input className="outline-none px-4 py-3 w-full border border-black" placeholder="First Name" type="text" />
-                        <input className="outline-none p-4 w-full border border-black" placeholder="Last Name" type="text" />
+                    <div className="mb-4 space-y-4">
+                        <div className="flex flex-col md:flex-row gap-y-4 md:gap-x-4">
+                            <input className="outline-none px-4 py-3 w-full border border-black" placeholder="First Name" type="text" />
+                            <input className="outline-none p-4 w-full border border-black" placeholder="Last Name" type="text" />
+                        </div>
+                        <div className="flex flex-col md:flex-row gap-y-4 md:gap-x-4">
+                            <input className="outline-none px-4 py-3 w-full border border-black" placeholder="Email ID" type="text" />
+                            <input className="outline-none p-4 w-full border border-black" placeholder="Phone Number" type="text" />
+                        </div>
+                        <div className="flex flex-col md:flex-row gap-y-4 md:gap-x-4">
+                            <textarea placeholder="Address 1" className="outline-none px-4 pb-16 pt-4 w-full border  border-black" name="" id="" cols="30" rows="1"></textarea>
+                            <textarea placeholder="Address 1" className="outline-none px-4 pb-16 pt-4 w-full border  border-black" name="" id="" cols="30" rows="1"></textarea>
+                        </div>
+                        <div className="flex flex-col md:flex-row gap-y-4 md:gap-x-4">
+                            <select  name="" placeholder="adfas" id="">
+                                {/* <option value="">asdfasdf</option> */}
+                            </select>
+                            <select name="" id=""></select>
+                            <input className="outline-none p-4 w-full border border-black" placeholder="Pincode" type="text" />
+                        </div>
                     </div>
                     <button className="bg-black hover:bg-black/90 duration-300 px-6 py-2 text-white md:w-32">Save</button>
                 </div>
