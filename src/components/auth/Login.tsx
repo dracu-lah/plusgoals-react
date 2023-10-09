@@ -2,6 +2,7 @@ import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import { CheckCircleIcon, KeyIcon } from "@heroicons/react/24/solid";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+import PlusGoalsLogo from "@assets/images/plus-goal-logo.png"
 
 export default function Login() {
   const emailRef = useRef(null)
@@ -9,11 +10,12 @@ export default function Login() {
   console.log('emailRef', emailRef)
   console.log('passwordRef', passwordRef)
   return (
-    <div className="min-h-screen bg-slate-400/10  flex justify-center items-center">
-      <div className="bg-white p-14 shadow-md rounded-lg">
+    <div className="min-h-screen bg-slate-400/10   flex justify-center items-center overflow-hidden">
+      <div className="bg-white h-screen md:h-full p-14 shadow-md  rounded-lg">
         <div className=" text-center mb-10">
-          <h1 className="bg-red-400/10 p-4 mb-2  ">Logo here</h1>
-          <p>Login to access your PlusGoals Account</p>
+          <img className="m-auto mb-4 h-12 w-56 " src={PlusGoalsLogo} alt="" />
+
+          <p className="font-semibold text-primary text-base">Login to access your PlusGoals Account</p>
         </div>
         <div className="space-y-4">
           <div className="bg-green-100/40 p-2 border border-green-400/40 rounded-md flex justify-between gap-x-2 items-start ">
