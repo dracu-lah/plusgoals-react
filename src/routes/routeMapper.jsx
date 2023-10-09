@@ -12,26 +12,29 @@ const Dashboard = lazy(() => import("@components/dashboard/Dashboard"));
 const NotFound = lazy(() => import("@components/shared/NotFound/NotFound"));
 const User = lazy(() => import("@components/users/User"));
 const StudentTaskBoard = lazy(() =>
-  import("@components/pages/student-task-board/StudentTaskBoard")
+  import("@components/pages/student-task-board/StudentTaskBoard"),
 );
 // account page components start
 const AccountPageLayout = lazy(() =>
-  import("@components/pages/account/AccountPageLayout")
+  import("@components/pages/account/AccountPageLayout"),
 );
 
+const EnrolledCoursesPage = lazy(() =>
+  import("@components/pages/account/enrolled-courses/EnrolledCoursesPage"),
+);
 const EditProfilePage = lazy(() =>
-  import("@components/pages/account/edit-profile/EditProfilePage")
+  import("@components/pages/account/edit-profile/EditProfilePage"),
 );
 const EditPhotoPage = lazy(() =>
-  import("@components/pages/account/edit-photo/EditPhotoPage")
+  import("@components/pages/account/edit-photo/EditPhotoPage"),
 );
 const EditAccountPage = lazy(() =>
-  import("@components/pages/account/edit-account/EditAccountPage")
+  import("@components/pages/account/edit-account/EditAccountPage"),
 );
 
 // account page components end
 const StudentQNA = lazy(() =>
-  import("@components/pages/student-qna/StudentQNA")
+  import("@components/pages/student-qna/StudentQNA"),
 );
 
 const routeMapper = () => {
@@ -124,6 +127,15 @@ const routeMapper = () => {
               element: (
                 <Suspense fallback={<Loader />}>
                   <User />
+                </Suspense>
+              ),
+            },
+            {
+              path: "enrolled-courses",
+              exact: true,
+              element: (
+                <Suspense fallback={<Loader />}>
+                  <EnrolledCoursesPage/>
                 </Suspense>
               ),
             },
