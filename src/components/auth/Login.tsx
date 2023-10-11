@@ -36,14 +36,14 @@ export default function Login() {
               <label htmlFor="" className="">Email Address:</label>
               <div className="flex items-center justify-start border rounded-md  p-2">
                 <EnvelopeIcon className="h-4 w-4" />
-                <input type="text" ref={emailRef} placeholder="john@doe.com" className="outline-none ml-2" />
+                <input type="text" ref={emailRef} placeholder="john@doe.com" className="outline-none ml-2 bg-transparent" />
               </div>
             </div>
             <div >
               <label htmlFor="">Password:</label>
               <div className="flex rounded-md  items-center justify-start border  p-2">
                 <KeyIcon className="h-4 w-4" />
-                <input ref={passwordRef} placeholder="Enter your password" type="password" className="outline-none ml-2" />
+                <input ref={passwordRef} placeholder="Enter your password" type="password" className="outline-none ml-2 bg-transparent" />
               </div>
             </div>
             <button className="bg-blue-600/90 text-white w-full p-2 rounded-lg hover:bg-blue-600/70 duration-300">LOGIN</button>
