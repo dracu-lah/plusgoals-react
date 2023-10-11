@@ -20,7 +20,7 @@ export default function SignIn() {
     console.log('errors', errors)
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         try {
-            const response = await Axios.post('https://ayurware.in/Plusgoals/api/register', data);
+            const response = await Axios.post(`${import.meta.env.VITE_API_URL + endpoints.register}`, data);
             console.log('Response from server:', response.data);
         } catch (error) {
             console.error('Error sending POST request:', error);
