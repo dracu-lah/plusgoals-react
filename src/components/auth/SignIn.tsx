@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import PlusGoalsLogo from "@assets/images/plus-goal-logo.png"
 import { useForm, SubmitHandler } from "react-hook-form";
+import Axios from "axios";
+import endpoints from "../../constants/endpoints";
+
 type Inputs = {
-    firstName: string,
-    lastName: string,
-    emailID: string,
-    phoneNumber: string
+    first_name: string,
+    last_name: string,
+    email: string,
+    phone_number: string
     password: string,
     rePassword: string
 };
@@ -14,80 +17,103 @@ export default function SignIn() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>({
         mode: 'onBlur',
     });
-    const onSubmit: SubmitHandler<Inputs> = (data) => {
-        console.log(data)
+    console.log('errors', errors)
+    const onSubmit: SubmitHandler<Inputs> = async (data) => {
+        try {
+            const response = await Axios.post('https://ayurware.in/Plusgoals/api/register', data);
+            console.log('Response from server:', response.data);
+        } catch (error) {
+            console.error('Error sending POST request:', error);
+        }
+    };
+
+    const validatePassword = (value: string) => {
+        const regex_value = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(value)
+        console.log('regex_value', regex_value)
+        return watch("password") === value || "Password Not Same";
 
     };
 
-    // console.log(watch("firstName")) // watch input value by passing the name of it
-
-
-
     return (
-        <div className="min-h-screen bg-slate-400/10  flex justify-center items-center overflow-hidden">
+        <div className="min-h-screen bg-slate-400/10 flex justify-center items-center overflow-hidden">
             <div className="bg-white p-14 shadow-md rounded-lg">
-                <div className=" text-center mb-10">
-                    <img className="m-auto mb-4 h-12 w-56 " src={PlusGoalsLogo} alt="" />
+                <div className="text-center mb-10">
+                    <img className="m-auto mb-4 h-12 w-56" src={PlusGoalsLogo} alt="" />
                     <p className="font-semibold text-primary text-xl">Login to access your PlusGoals Account</p>
                 </div>
-                {/* <div className="space-y-4">
-                    <div className="bg-green-100/40 p-2 border border-green-400/40 rounded-md flex flex-col md:flex-row justify-center items-center gap-x-2 ">
-                        <CheckCircleIcon className="h-14 w-14 text-green-500" />
-                        <p className="   tracking-tighter ">An email with password reset instructions has been sent to your email address, if it exists on our system.</p>
-                    </div>
-                </div> */}
-                <form action="" className="my-4" onSubmit={handleSubmit(onSubmit)} >
+                <form action="" className="my-4" onSubmit={handleSubmit(onSubmit)}>
                     <div className="space-y-5">
-
-                        <div className="flex flex-col   md:flex-row gap-x-4">
+                        <div className="flex flex-col md:flex-row gap-x-4">
                             <div className="flex flex-col w-full">
-                                <label htmlFor="" className="">First Name:</label>
-                                <input type="text" placeholder="john" className={`outline-none border ${errors.firstName && 'border-red-400'}  focus:border-blue-400 hover:border-slate-400 duration-300  rounded-md  p-2 bg-transparent `} {...register("firstName", { required: true, maxLength: 20 })} />
-
-                                {errors.firstName && (<h6 className="text-red-500 text-xs">Please Enter Last Name </h6>)}
-                            </div>
-
-                            <div className="flex flex-col w-full">
-                                <label htmlFor="" className="">Last Name:</label>
-                                <input type="text" placeholder="doe" className={`outline-none border ${errors.lastName && 'border-red-400'} focus:border-blue-400 hover:border-slate-400 duration-300  rounded-md  p-2 bg-transparent `} {...register("lastName", { pattern: /^[A-Za-z]+$/i, required: true })}
+                                <label htmlFor="first_name">First Name:</label>
+                                <input
+                                    type="text"
+                                    placeholder="John"
+                                    className={`outline-none border ${errors.first_name && 'border-red-400'} focus:border-blue-400 hover:border-slate-400 duration-300 rounded-md p-2 bg-transparent`}
+                                    {...register("first_name", { required: { value: true, message: "Please Enter First Name" }, maxLength: 20 })}
                                 />
-                                {errors.lastName && (<h6 className="text-red-500 text-xs">Please Enter Last Name    </h6>)}
-
+                                {errors.first_name && <span className="text-red-500 text-xs">{errors.first_name.message}</span>}
                             </div>
-                        </div>
-                        <div className="flex flex-col   md:flex-row gap-x-4">
                             <div className="flex flex-col w-full">
-                                <label htmlFor="" className="">Email ID:</label>
-                                <input type="email" placeholder="john" className="outline-none border focus:border-blue-400 hover:border-slate-400 duration-300  rounded-md  p-2 bg-transparent " {...register("emailID", { required: true, })} />
-                                {errors.firstName && (<h6 className="text-red-500 text-xs">Please Enter Email</h6>)}
-
-                            </div>
-
-                            <div className="flex flex-col w-full">
-                                <label htmlFor="" className="">Phone Number:</label>
-                                <input type="text" placeholder="doe" className="outline-none border focus:border-blue-400 hover:border-slate-400 duration-300  rounded-md  p-2 bg-transparent " {...register("phoneNumber", { required: true, })} />
-                                {errors.firstName && (<h6 className="text-red-500 text-xs">Please Enter Phone Number</h6>)}
+                                <label htmlFor="last_name">Last Name:</label>
+                                <input
+                                    type="text"
+                                    placeholder="Doe"
+                                    className={`outline-none border ${errors.last_name && 'border-red-400'} focus:border-blue-400 hover:border-slate-400 duration-300 rounded-md p-2 bg-transparent`}
+                                    {...register("last_name", { required: { value: true, message: "Please Enter Last Name" } })}
+                                />
+                                {errors.last_name && <span className="text-red-500 text-xs">{errors.last_name.message}</span>}
                             </div>
                         </div>
                         <div className="flex flex-col md:flex-row gap-x-4">
                             <div className="flex flex-col w-full">
-                                <label htmlFor="" className="">Password:</label>
-                                <input type="password" placeholder="******" className="outline-none border focus:border-blue-400 hover:border-slate-400 duration-300  rounded-md  p-2 bg-transparent " {...register("password", { required: true })} />
-                                {errors.firstName && (<h6 className="text-red-500 text-xs">Please Enter Password </h6>)}
-
+                                <label htmlFor="email">Email ID:</label>
+                                <input
+                                    type="email"
+                                    placeholder="john@example.com"
+                                    className={`outline-none border ${errors.email && 'border-red-400'} focus:border-blue-400 hover:border-slate-400 duration-300 rounded-md p-2 bg-transparent`}
+                                    {...register("email", { required: { value: true, message: "Please Enter Email" } })}
+                                />
+                                {errors.email && <span className="text-red-500 text-xs">{errors.email.message}</span>}
                             </div>
                             <div className="flex flex-col w-full">
-                                <label htmlFor="" className="">Re-Password:</label>
-                                <input type="password" placeholder="******" className="outline-none border focus:border-blue-400 hover:border-slate-400 duration-300  rounded-md  p-2 bg-transparent " {...register("rePassword", { required: true })} />
-                                {errors.firstName && (<h6 className="text-red-500 text-xs">Please Re-enter Password </h6>)}
-
+                                <label htmlFor="phone_number">Phone Number:</label>
+                                <input
+                                    type="text"
+                                    placeholder="934 534 4994"
+                                    className={`outline-none border ${errors.phone_number && 'border-red-400'} focus:border-blue-400 hover:border-slate-400 duration-300 rounded-md p-2 bg-transparent`}
+                                    {...register("phone_number", { pattern: { value: /^(\+1\s?)?((\(\d{3}\))|\d{3})[\s.-]?\d{3}[\s.-]?\d{4}$/, message: "Enter Proper Phone Number" }, required: { value: true, message: "Phone Number is required" } })}
+                                />
+                                {errors.phone_number && <span className="text-red-500 text-xs">{errors.phone_number.message}</span>}
                             </div>
                         </div>
-                        <input type="submit" className="bg-blue-600/90 text-white w-full py-4 px-2 rounded-lg hover:bg-blue-600/70 duration-300" value={'SignIn'} />
+                        <div className="flex flex-col md:flex-row gap-x-4">
+                            <div className="flex flex-col w-full">
+                                <label htmlFor="password">Password:</label>
+                                <input
+                                    type="password"
+                                    placeholder="******"
+                                    className={`outline-none border ${errors.password && 'border-red-400'} focus:border-blue-400 hover:border-slate-400 duration-300 rounded-md p-2 bg-transparent`}
+                                    {...register("password", { required: { value: true, message: "Please Enter Password" }, minLength: { value: 6, message: "Atleast 6 characters required" } })}
+                                />
+                                {errors.password && <span className="text-red-500 text-xs">{errors.password.message}</span>}
+                            </div>
+                            <div className="flex flex-col w-full">
+                                <label htmlFor="rePassword">Re-Password:</label>
+                                <input
+                                    type="password"
+                                    placeholder="******"
+                                    className={`outline-none border ${errors.rePassword && 'border-red-400'} focus:border-blue-400 hover:border-slate-400 duration-300 rounded-md p-2 bg-transparent`}
+                                    {...register("rePassword", { required: { value: true, message: "Please Re-Enter Password" }, validate: validatePassword })}
+                                />
+                                {errors.rePassword && <span className="text-red-500 text-xs">{errors.rePassword.message}</span>}
+                            </div>
+                        </div>
+                        <input type="submit" className="bg-blue-600/90 text-white w-full py-4 px-2 rounded-lg hover:bg-blue-600/70 duration-300" value="SignIn" />
                     </div>
                     <div className="text-center mt-2">
                         <h6 className="hover:underline cursor-pointer">Forgot password?</h6>
-                        <p>Have an account? <Link to={"/login"} className="underline cursor-pointer">Login!</Link></p>
+                        <p>Have an account? <Link to="/login" className="underline cursor-pointer">Login!</Link></p>
                     </div>
                 </form>
             </div>
