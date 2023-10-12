@@ -6,6 +6,7 @@ import Axios, { AxiosResponse } from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import endpoints from "../../constants/endpoints";
 import { RoutePath } from "../../constants/routepaths";
+import notificationHelpers from "../../utils/notification.ts";
 
 type Inputs = {
   email: string,
@@ -30,12 +31,15 @@ export default function Login() {
     try {
       const response: AxiosResponse = await Axios.post(`${import.meta.env.VITE_API_URL + endpoints.login}`, loginData);
       const data: LoginResponse = await response.data.data
+      console.log('response.data.status', response.data.status)
       if (data) {
         localStorage.setItem("token", data.token)
         navigate(RoutePath.dashboard)
+        notificationHelpers.success("Logged In Successfully")
       }
-    } catch (error) {
-      console.error('Error sending POST request:', error);
+    } catch (error: any) {
+      notificationHelpers.error(error.response.data.message)
+      // console.error('Error sending POST request:', error);
     }
   };
 
