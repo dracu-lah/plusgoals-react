@@ -1,6 +1,13 @@
-import { LockClosedIcon, UserGroupIcon } from "@heroicons/react/24/outline";
+import {  LockOpenIcon, UserGroupIcon } from "@heroicons/react/24/outline";
 import PlusGoalsLogo from "@assets/images/plus-goal-logo.png"
+import { useNavigate } from "react-router-dom";
+import { RoutePath } from "../../../constants/routepaths";
 const Header = () => {
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate(RoutePath.login)
+  }
   return (
     <header className=" flex items-center justify-between py-6  md:py-4 px-6  shadow-lg   w-full z-40 bg-white">
       <div className="flex justify-center items-center gap-x-4">
@@ -32,10 +39,11 @@ const Header = () => {
           </li>
         </ul>
         <div
+          onClick={handleLogout}
           className="tooltip  tooltip-bottom tooltip-primary"
           data-tip="Login"
         >
-          <LockClosedIcon className="text-neutral/60 hover:text-neutral  cursor-pointer duration-300 h-5 w-5 mx-4" />
+          <LockOpenIcon className="text-neutral/60 hover:text-neutral  cursor-pointer duration-300 h-5 w-5 mx-4" />
         </div>
         <button className="btn bg-transparent btn-sm hover:btn-neutral border border-slate-400  ">
           Get Started
