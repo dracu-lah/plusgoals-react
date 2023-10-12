@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PlusGoalsLogo from "@assets/images/plus-goal-logo.png"
 import { useForm, SubmitHandler } from "react-hook-form";
 import Axios from "axios";
-import endpoints from "../../constants/endpoints";
+import endpoints from "../../constants/endpoints.js";
+import notificationHelpers from "../../utils/notification.ts";
+import { RoutePath } from "../../constants/routepaths.js";
 
 type Inputs = {
     first_name: string,
@@ -13,15 +15,22 @@ type Inputs = {
     rePassword: string
 };
 
-export default function SignIn() {
+export default function SignUp() {
+    const navigate = useNavigate()
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>({
         mode: 'onBlur',
     });
     // console.log('errors', errors)
-    const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const onSubmit: SubmitHandler<Inputs> = async (signUpData) => {
         try {
-            const response = await Axios.post(`${import.meta.env.VITE_API_URL + endpoints.register}`, data);
-        } catch (error) {
+            const response = await Axios.post(`${import.meta.env.VITE_API_URL + endpoints.register}`, signUpData);
+            const data: any = await response.data.data
+            if (data) {
+                notificationHelpers.success("Registered Successfully, Try Logging In ")
+                navigate(RoutePath.login)
+            }
+        } catch (error: any) {
+            notificationHelpers.error(error.response.data.data.email[0])
             console.error('Error sending POST request:', error);
         }
     };
@@ -106,7 +115,7 @@ export default function SignIn() {
                                 {errors.rePassword && <span className="text-red-500 text-xs">{errors.rePassword.message}</span>}
                             </div>
                         </div>
-                        <input type="submit" className="bg-blue-600/90 text-white w-full py-4 px-2 rounded-lg hover:bg-blue-600/70 duration-300" value="SignIn" />
+                        <input type="submit" className="bg-blue-600/90 text-white w-full py-4 px-2 rounded-lg hover:bg-blue-600/70 duration-300" value="Signup" />
                     </div>
                     <div className="text-center mt-2">
                         <h6 className="hover:underline cursor-pointer">Forgot password?</h6>

@@ -90,7 +90,7 @@ export default function Login() {
               <p>Remember me for 30 days</p>
             </div> */}
             <h6 className="hover:underline cursor-pointer">Forgot password?</h6>
-            <p>Don't have an account? <Link to={"/signin"} className="underline cursor-pointer">Signup!</Link></p>
+            <p>Don't have an account? <Link to={"/signup"} className="underline cursor-pointer">Signup!</Link></p>
           </div>
         </form>
       </div>

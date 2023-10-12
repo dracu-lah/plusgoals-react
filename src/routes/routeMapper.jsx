@@ -7,34 +7,34 @@ import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 // Lazy-loaded Components
 const Login = lazy(() => import("@components/auth/Login"));
-const SignIn = lazy(() => import("@components/auth/SignIn"));
+const SignUp = lazy(() => import("@components/auth/SignUp"));
 const Dashboard = lazy(() => import("@components/dashboard/Dashboard"));
 const NotFound = lazy(() => import("@components/shared/NotFound/NotFound"));
 const User = lazy(() => import("@components/users/User"));
 const StudentTaskBoard = lazy(() =>
-  import("@components/pages/student-task-board/StudentTaskBoard"),
+  import("@components/pages/student-task-board/StudentTaskBoard")
 );
 // account page components start
 const AccountPageLayout = lazy(() =>
-  import("@components/pages/account/AccountPageLayout"),
+  import("@components/pages/account/AccountPageLayout")
 );
 
 const EnrolledCoursesPage = lazy(() =>
-  import("@components/pages/account/enrolled-courses/EnrolledCoursesPage"),
+  import("@components/pages/account/enrolled-courses/EnrolledCoursesPage")
 );
 const EditProfilePage = lazy(() =>
-  import("@components/pages/account/edit-profile/EditProfilePage"),
+  import("@components/pages/account/edit-profile/EditProfilePage")
 );
 const EditPhotoPage = lazy(() =>
-  import("@components/pages/account/edit-photo/EditPhotoPage"),
+  import("@components/pages/account/edit-photo/EditPhotoPage")
 );
 const EditAccountPage = lazy(() =>
-  import("@components/pages/account/edit-account/EditAccountPage"),
+  import("@components/pages/account/edit-account/EditAccountPage")
 );
 
 // account page components end
 const StudentQNA = lazy(() =>
-  import("@components/pages/student-qna/StudentQNA"),
+  import("@components/pages/student-qna/StudentQNA")
 );
 
 const routeMapper = () => {
@@ -51,11 +51,11 @@ const routeMapper = () => {
       exact: true,
     },
     {
-      path: "/signin",
+      path: "/signup",
       element: (
         <PublicRoute>
           <Suspense fallback={<Loader />}>
-            <SignIn />
+            <SignUp />
           </Suspense>
         </PublicRoute>
       ),
@@ -135,7 +135,7 @@ const routeMapper = () => {
               exact: true,
               element: (
                 <Suspense fallback={<Loader />}>
-                  <EnrolledCoursesPage/>
+                  <EnrolledCoursesPage />
                 </Suspense>
               ),
             },

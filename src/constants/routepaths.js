@@ -1,5 +1,5 @@
 export const RoutePath = {
   dashboard: "/",
-  signIn: "/signin",
+  signUp: "/signup",
   login: "/login",
 };
