@@ -1,14 +1,45 @@
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import { CheckCircleIcon, KeyIcon } from "@heroicons/react/24/solid";
-import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PlusGoalsLogo from "@assets/images/plus-goal-logo.png"
+import Axios, { AxiosResponse } from "axios";
+import { SubmitHandler, useForm } from "react-hook-form";
+import endpoints from "../../constants/endpoints";
+import { RoutePath } from "../../constants/routepaths";
+
+type Inputs = {
+  email: string,
+  password: string,
+};
+type LoginResponse = {
+  email: string,
+  id: number | string,
+  name: string
+  token: string,
+  message: string
+}
+
 
 export default function Login() {
-  const emailRef = useRef(null)
-  const passwordRef = useRef(null)
-  console.log('emailRef', emailRef)
-  console.log('passwordRef', passwordRef)
+  const navigate = useNavigate()
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>({
+    mode: 'onBlur',
+  });
+  // console.log('errors', errors)
+  const onSubmit: SubmitHandler<Inputs> = async (loginData) => {
+    try {
+      const response: AxiosResponse = await Axios.post(`${import.meta.env.VITE_API_URL + endpoints.login}`, loginData);
+      const data: LoginResponse = await response.data.data
+      if (data) {
+        localStorage.setItem("token", data.token)
+        navigate(RoutePath.dashboard)
+      }
+    } catch (error) {
+      console.error('Error sending POST request:', error);
+    }
+  };
+
+
   return (
     <div className="min-h-screen bg-slate-400/10   flex justify-center items-center overflow-hidden">
       <div className="bg-white h-screen md:h-full p-14 shadow-md  rounded-lg">
@@ -29,24 +60,24 @@ export default function Login() {
             <p className="mt-1 ">CONTINUE WITH GOOGLE</p>
           </div> */}
         </div>
-        <form action="" className="my-4">
+        <form onSubmit={handleSubmit(onSubmit)} action="" className="my-4">
           <div className="space-y-4">
 
             <div>
               <label htmlFor="" className="">Email Address:</label>
               <div className="flex items-center justify-start border rounded-md  p-2">
                 <EnvelopeIcon className="h-4 w-4" />
-                <input type="text" ref={emailRef} placeholder="john@doe.com" className="outline-none ml-2 bg-transparent" />
+                <input {...register("email")} type="email" placeholder="john@doe.com" className="outline-none ml-2 bg-transparent" />
               </div>
             </div>
             <div >
               <label htmlFor="">Password:</label>
               <div className="flex rounded-md  items-center justify-start border  p-2">
                 <KeyIcon className="h-4 w-4" />
-                <input ref={passwordRef} placeholder="Enter your password" type="password" className="outline-none ml-2 bg-transparent" />
+                <input {...register("password")} placeholder="Enter your password" type="password" className="outline-none ml-2 bg-transparent" />
               </div>
             </div>
-            <button className="bg-blue-600/90 text-white w-full p-2 rounded-lg hover:bg-blue-600/70 duration-300">LOGIN</button>
+            <input type="submit" className="bg-blue-600/90 text-white w-full p-2 rounded-lg hover:bg-blue-600/70 duration-300" value='LOGIN' />
           </div>
           <div className="text-center">
 
