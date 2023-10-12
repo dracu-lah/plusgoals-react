@@ -17,19 +17,16 @@ export default function SignIn() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>({
         mode: 'onBlur',
     });
-    console.log('errors', errors)
+    // console.log('errors', errors)
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         try {
             const response = await Axios.post(`${import.meta.env.VITE_API_URL + endpoints.register}`, data);
-            console.log('Response from server:', response.data);
         } catch (error) {
             console.error('Error sending POST request:', error);
         }
     };
 
     const validatePassword = (value: string) => {
-        const regex_value = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(value)
-        console.log('regex_value', regex_value)
         return watch("password") === value || "Password Not Same";
 
     };
